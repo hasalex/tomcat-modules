@@ -6,9 +6,11 @@ The goal of the project is to use jboss-modules in Tomcat.
 Try it
 ------
 
-1. Install Tomcat - I'm currently using Tomcat 7.0
-2. Change bin/setclasspath.sh and add the following line at the end of the file :
-  CLASSPATH="$CATALINA_HOME"/lib/*
+1. Install Tomcat - I've tested Tomcat 7.0
+2. Edit bin/setclasspath.sh and add the following line at the end of the file :
+
+     CLASSPATH="$CATALINA_HOME"/lib/*
+
 3. Change the properties in the parent pom.xml (especially tomcat.home)
 4. Run "mvn install"
 5. Run Tomcat
@@ -17,14 +19,14 @@ Try it
 Why ?
 -----
 
-Because modularity is cool, Jigsaw is postponed and OSGi is OSGi.
+Because modularity is cool and JBoss Modules is the way.
 
 
 How does it work ?
 ------------------
 
 With Tomcat, you can switch the classloader of an application by specifying a loader in the META-INF/context.xml.
-The tomcat-loader module is such a loader which tell Tomcat to use a JBoss Modules classloader.
+The tomcat-loader module is such a loader which tells Tomcat to use a JBoss Modules classloader.
 
 Limitations and TODO
 --------------------
