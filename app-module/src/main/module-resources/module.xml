@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.1" name="${project.groupId}.${project.artifactId}">
+    <resources>
+        <resource-root path="${project.build.finalName}.${project.packaging}"/>
+    </resources>
+
+    <dependencies>
+        <module name="javax.api"/>
+        <system export="true">
+            <paths>
+                <path name="javax/servlet"/>
+                <path name="javax/servlet/annotation"/>
+                <path name="javax/servlet/http"/>
+                <path name="org/apache/jasper"/>
+                <path name="org/apache/jasper/servlet"/>
+                <path name="org/apache/el"/>
+                <path name="org/apache/catalina/authenticator"/>
+                <path name="org/apache/catalina/comet"/>
+                <path name="org/apache/catalina/connector"/>
+                <path name="org/apache/catalina/core"/>
+                <path name="org/apache/catalina/deploy"/>
+                <path name="org/apache/catalina/filters"/>
+                <path name="org/apache/catalina/loader"/>
+                <path name="org/apache/catalina/mbeans"/>
+                <path name="org/apache/catalina/realm"/>
+                <path name="org/apache/catalina/security"/>
+                <path name="org/apache/catalina/servlets"/>
+                <path name="org/apache/catalina/session"/>
+                <path name="org/apache/catalina/ssi"/>
+                <path name="org/apache/catalina/startup"/>
+                <path name="org/apache/catalina/users"/>
+                <path name="org/apache/catalina/util"/>
+                <path name="org/apache/catalina/valves"/>
+                <path name="org/apache/catalina/websocket"/>
+            </paths>
+        </system>
+    </dependencies>
+</module>
