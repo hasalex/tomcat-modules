@@ -10,10 +10,6 @@
     </parent>
     <artifactId>app-module</artifactId>
 
-    <properties>
-        <jboss.module.dir>${project.parent.basedir}/../modules-repository</jboss.module.dir>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>

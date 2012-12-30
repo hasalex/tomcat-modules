@@ -17,6 +17,7 @@
 
     <properties>
         <tomcat.home>/opt/java/apache-tomcat-7.0.33</tomcat.home>
+        <jboss.module.dir>${project.basedir}/../../modules-repository</jboss.module.dir>
     </properties>
 
     <build>

@@ -35,6 +35,21 @@
     <build>
         <plugins>
             <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${tomcat.home}/lib</directory>
+                            <includes>
+                                <include>${project.artifactId}*.jar</include>
+                                <include>jboss-modules*.jar</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>2.6</version>
                 <executions>
@@ -46,7 +61,7 @@
                         </goals>
                         <configuration>
                             <includeGroupIds>org.jboss.modules</includeGroupIds>
-                            <outputDirectory>${tomcat.home}/lib/</outputDirectory>
+                            <outputDirectory>${tomcat.home}/lib</outputDirectory>
                             <stripVersion>true</stripVersion>
                         </configuration>
                     </execution>
@@ -65,7 +80,7 @@
                                     <type>${project.packaging}</type>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${tomcat.home}/lib/</outputDirectory>
+                            <outputDirectory>${tomcat.home}/lib</outputDirectory>
                             <stripVersion>true</stripVersion>
                         </configuration>
                     </execution>
