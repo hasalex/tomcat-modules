@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context distributable="true">
-    <Loader className="org.sewatech.tomcat.loader.ModuleWebLoader"/>
+    <Loader className="org.sewatech.tomcat.loader.ModuleWebLoader"
+            modulesRoot="/Volumes/MacHDD/ProjetBis/tomcat/modules-repository"
+            moduleName="org.sewatech.module.app-module"/>
 </Context>

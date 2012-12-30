@@ -1,5 +1,6 @@
 package org.sewatech.tomcat.loader;
 
+import org.jboss.modules.LocalModuleLoader;
 import org.jboss.modules.Module;
 import org.jboss.modules.ModuleIdentifier;
 
@@ -14,8 +15,11 @@ import java.io.File;
 
 public class ModuleWebLoader extends LifecycleMBeanBase implements Loader {
 
-    private static final String MODULES_ROOT = "/Volumes/MacHDD/ProjetBis/tomcat/modules-repository";
-    public static final String MODULE_NAME = "org.sewatech.module.app-module";
+    private String modulesRoot;
+    private String moduleName;
+    private ClassLoader classLoader = null;
+    private Container container = null;
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public ModuleWebLoader() {
         this(null);
@@ -25,9 +29,13 @@ public class ModuleWebLoader extends LifecycleMBeanBase implements Loader {
         super();
     }
 
-    private ClassLoader classLoader = null;
-    private Container container = null;
-    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+    public void setModulesRoot(String modulesRoot) {
+        this.modulesRoot = modulesRoot;
+    }
+
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
+    }
 
     @Override
     public ClassLoader getClassLoader() {
@@ -116,8 +124,8 @@ public class ModuleWebLoader extends LifecycleMBeanBase implements Loader {
 
         // Construct a class loader based on our current repositories list
         try {
-            MultiRootsModuleLoader loader = new MultiRootsModuleLoader(new File[]{new File(MODULES_ROOT)});
-            ModuleIdentifier identifier = ModuleIdentifier.create(MODULE_NAME);
+            LocalModuleLoader loader = new LocalModuleLoader(new File[]{new File(modulesRoot)});
+            ModuleIdentifier identifier = ModuleIdentifier.create(moduleName);
             Module module = loader.loadModule(identifier);
 
             classLoader = module.getClassLoader();

@@ -20,8 +20,8 @@ Why ?
 Because modularity is cool, Jigsaw is postponed and OSGi is OSGi.
 
 
-How it works ?
---------------
+How does it work ?
+------------------
 
 With Tomcat, you can switch the classloader of an application by specifying a loader in the META-INF/context.xml.
 The tomcat-loader module is such a loader which tell Tomcat to use a JBoss Modules classloader.
@@ -35,4 +35,5 @@ The following features have to be implemented :
 - JSP
 - Servlets, filters and other classes in WEB-INF/classes
 - jar files in WEB-INF/lib
+- Unload classes on hot deploy
 - ...
