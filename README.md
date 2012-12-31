@@ -6,7 +6,7 @@ The goal of the project is to use jboss-modules in Tomcat.
 Try it
 ------
 
-1. Install Tomcat - I've tested Tomcat 7.0
+1. Install Tomcat - I've tested with Tomcat 7.0
 2. Edit bin/setclasspath.sh and add the following line at the end of the file :
 
      CLASSPATH="$CATALINA_HOME"/lib/*
