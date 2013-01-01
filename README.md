@@ -21,20 +21,21 @@ Why ?
 
 Because modularity is cool and JBoss Modules is the way.
 
-
 How does it work ?
 ------------------
 
 With Tomcat, you can switch the classloader of an application by specifying a loader in the META-INF/context.xml.
 The tomcat-loader module is such a loader which tells Tomcat to use a JBoss Modules classloader.
 
+The JSPs a still loaded by the JasperLoader. The main change is that the JasperLoader is a child classloader of the main
+Module. It can therefore take advantage of modularity.
+
 Limitations and TODO
 --------------------
 
-For the moment, it only works with a simple servlet, in a separate module.
+For the moment, it only works with a simple servlet, in a separate module (alpha1), and with a JSP (alpha2).
 
 The following features have to be implemented :
-- JSP
 - Servlets, filters and other classes in WEB-INF/classes
 - jar files in WEB-INF/lib
 - Unload classes on hot deploy
