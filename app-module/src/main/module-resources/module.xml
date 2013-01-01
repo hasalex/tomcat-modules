@@ -10,12 +10,20 @@
                 <path name="javax/servlet"/>
                 <path name="javax/servlet/annotation"/>
                 <path name="javax/servlet/http"/>
+                <path name="javax/servlet/jsp"/>
+
+                <path name="javax/el"/>
+
                 <path name="org/apache/jasper"/>
                 <path name="org/apache/jasper/servlet"/>
+                <path name="org/apache/jasper/runtime"/>
                 <path name="org/apache/el"/>
+                <path name="org/apache/tomcat"/>
 
                 <path name="org/apache/catalina/deploy"/>
                 <path name="org/apache/catalina/servlets"/>
+
+                <path name="com/sun/org/apache/xerces/internal/impl/dv/dtd"/>
             </paths>
         </system>
     </dependencies>

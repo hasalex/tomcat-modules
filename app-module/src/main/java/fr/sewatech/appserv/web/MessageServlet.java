@@ -16,26 +16,25 @@ public class MessageServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        try {
-            String message = service.getMessage();
-            Writer out = response.getWriter();
-            out.write("<p>" + message + "</p>");
+        Writer out = response.getWriter();
 
-            ClassLoader classLoader = this.getClass().getClassLoader();
-            out.write("<p>Classloader Hierarchy</p><ul>");
-            while (classLoader != null) {
-                out.write("<li>" + classLoader.getClass() + "</li>");
-                classLoader = classLoader.getParent();
-            }
-            out.write("</ul>");
+        out.write("<!DOCTYPE html><html><head><title>Message via Servlet</title></head><body>");
 
-        } catch (Exception e) {
-            throw new ServletException(e);
+        String message = service.getMessage();
+        out.write("<p>" + message + "</p>");
+
+        ClassLoader classLoader = this.getClass().getClassLoader();
+        out.write("<p>ClassLoader Hierarchy</p><ul>");
+        while (classLoader != null) {
+            out.write("<li>" + classLoader.getClass() + "</li>");
+            classLoader = classLoader.getParent();
         }
+        out.write("</ul>");
+        out.write("</body></html>");
     }
 
     @Override
     public void init() throws ServletException {
-        System.out.println("Init de MessageServlet");
+        System.out.println("=== Init de MessageServlet");
     }
 }
