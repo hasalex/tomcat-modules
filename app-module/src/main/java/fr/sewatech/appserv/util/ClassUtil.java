@@ -28,4 +28,12 @@ public final class ClassUtil {
         }
     }
 
+    public static File getLibrary(Object object) {
+        return getLibrary(object.getClass());
+    }
+
+    public static Class<? extends ClassLoader> getClassLoader(Object object) {
+        return object.getClass().getClassLoader().getClass();
+    }
+
 }

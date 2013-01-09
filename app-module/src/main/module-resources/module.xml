@@ -5,7 +5,7 @@
     </resources>
 
     <dependencies>
-        <system>
+        <system export="true">
             <paths>
                 <path name="javax/servlet"/>
                 <path name="javax/servlet/annotation"/>

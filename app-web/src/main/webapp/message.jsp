@@ -1,20 +1,15 @@
-<%@ page import="fr.sewatech.appserv.service.MessageService" %>
+<%@ page import="fr.sewatech.appserv.util.ClassUtil" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Message via JSP</title>
 </head>
 <body>
-<%
-    MessageService service = new MessageService();
-
-    String message = service.getMessage();
-    ClassLoader classLoader = page.getClass().getClassLoader();
-%>
-<p><%= message %> </p>
+<p>JSP loaded from <%= ClassUtil.getLibrary(this)%> with the classloader <%= ClassUtil.getClassLoader(this) %> </p>
 <p>ClassLoader Hierarchy</p>
 <ul>
     <%
+        ClassLoader classLoader = page.getClass().getClassLoader();
         while (classLoader != null) {
     %>
     <li><%= classLoader.getClass() %></li>

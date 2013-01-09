@@ -20,6 +20,7 @@ public class ModuleWebLoader extends LifecycleMBeanBase implements Loader {
     private ClassLoader classLoader = null;
     private Container container = null;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+    public static final String CLASSES_PATH = "/WEB-INF/classes";
 
     public ModuleWebLoader() {
         this(null);
@@ -113,7 +114,6 @@ public class ModuleWebLoader extends LifecycleMBeanBase implements Loader {
 
     }
 
-
     @Override
     protected void startInternal() throws LifecycleException {
 
@@ -121,12 +121,17 @@ public class ModuleWebLoader extends LifecycleMBeanBase implements Loader {
             setState(LifecycleState.STARTING);
             return;
         }
+        LocalModuleLoader loader = new LocalModuleLoader(new File[]{new File(modulesRoot)});
 
-        // Construct a class loader based on our current repositories list
+        ServletContext servletContext = ((Context) container).getServletContext();
+        String absoluteClassesPath = servletContext.getRealPath(CLASSES_PATH);
+
         try {
-            LocalModuleLoader loader = new LocalModuleLoader(new File[]{new File(modulesRoot)});
-            ModuleIdentifier identifier = ModuleIdentifier.create(moduleName);
-            Module module = loader.loadModule(identifier);
+            String classPath = absoluteClassesPath; //<= WEB-INF/classes et WEB-INF/lib/*.jar
+            ClassPathModuleLoaderWrapper cpLoader = new ClassPathModuleLoaderWrapper(loader, "", classPath, moduleName);
+
+            //ModuleIdentifier identifier = ModuleIdentifier.create(moduleName);
+            Module module = cpLoader.loadModule(ModuleIdentifier.CLASSPATH);
 
             classLoader = module.getClassLoader();
         } catch (Throwable t) {
@@ -174,7 +179,6 @@ public class ModuleWebLoader extends LifecycleMBeanBase implements Loader {
             name.append(",host=");
             name.append(context.getParent().getName());
         } else {
-            // Unlikely / impossible? Handle it to be safe
             name.append(",container=");
             name.append(container.getName());
         }
@@ -183,3 +187,4 @@ public class ModuleWebLoader extends LifecycleMBeanBase implements Loader {
     }
 
 }
+

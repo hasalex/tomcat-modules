@@ -4,13 +4,24 @@
          version="3.0">
 
     <servlet>
-        <servlet-name>MessageServlet</servlet-name>
-        <servlet-class>fr.sewatech.appserv.web.MessageServlet</servlet-class>
+        <servlet-name>ExternalMessageServlet</servlet-name>
+        <servlet-class>fr.sewatech.appserv.web.ExternalServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>InternalMessageServlet</servlet-name>
+        <servlet-class>fr.sewatech.appserv.webbis.InternalServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>MessageServlet</servlet-name>
-        <url-pattern>/message</url-pattern>
+        <servlet-name>ExternalMessageServlet</servlet-name>
+        <url-pattern>/outmsg</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>InternalMessageServlet</servlet-name>
+        <url-pattern>/inmsg</url-pattern>
     </servlet-mapping>
 </web-app>
